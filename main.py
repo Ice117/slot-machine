@@ -94,7 +94,8 @@ def main():
         else:
             break
 
-
     print(f"Você apostou {bet} em {lines} linhas. total da aposta: ${total_bet}")
+
+    slots = get_slot_machine_spin(ROWS, COLS, SYMBOLS)
 
 main()
