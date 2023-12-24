@@ -1,7 +1,7 @@
 import random
 
 MAX_LINES = 3
-MAX_BET = 10000
+MAX_BET = 1000
 MIN_BET = 1
 
 ROWS = 3
@@ -13,6 +13,11 @@ symbol_count = {
     "C": 6,
     "D": 8
 }
+
+def check_winning(columns, lines, bet, values):
+    for line in rage(lines):
+        symbol = columns[0][line]
+
 
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
@@ -28,6 +33,7 @@ def get_slot_machine_spin(rows, cols, symbols):
             value = random.choice(current_symbols)
             current_symbols.remove(value)
             column.append(value)
+
         columns.append(column)
 
     return columns
