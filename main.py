@@ -14,9 +14,16 @@ symbol_count = {
     "D": 8
 }
 
+symbol_values = {
+    "A": 5,
+    "B": 4,
+    "C": 3,
+    "D": 2
+}
+
 def check_winning(columns, lines, bet, values):
     winnings = 0
-    for line in rage(lines):
+    for line in range(lines):
         symbol = columns[0][line]
         for column in columns:
             symbol_to_check = columns[line]
@@ -114,6 +121,8 @@ def main():
 
     print(f"Você apostou {bet} em {lines} linhas. total da aposta: ${total_bet}")
 
-    slots = get_slot_machine_spin(ROWS, COLS, SYMBOLS)
+    slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
+    print_slot_machine(slots)
+    winnings = check_winning(slots, lines, bet, symbol_values)
 
 main()
