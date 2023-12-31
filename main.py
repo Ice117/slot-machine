@@ -21,13 +21,13 @@ symbol_values = {
     "D": 2
 }
 
-def check_winning(columns, lines, bet, values):
+def check_winnings(columns, lines, bet, values):
     winnings = 0
     winning_lines = []
     for line in range(lines):
         symbol = columns[0][line]
         for column in columns:
-            symbol_to_check = columns[line]
+            symbol_to_check = column[line]
             if symbol != symbol_to_check:
                 break
         else:
@@ -35,7 +35,6 @@ def check_winning(columns, lines, bet, values):
             winning_lines.append(line + 1)
 
     return winnings, winning_lines
-
 
 
 def get_slot_machine_spin(rows, cols, symbols):
@@ -97,17 +96,17 @@ def get_number_of_lines():
 
 def get_bet():
     while True:
-        bet = input("Quanto você gostaria de apostar ? $")
-        if bet.isdigit():
-            bet = int(bet)
-            if MIN_BET <= bet <= MAX_BET:
+        amount = input("Quanto você gostaria de apostar ? $")
+        if amount.isdigit():
+            amount = int(amount)
+            if MIN_BET <= amount <= MAX_BET:
                 break
             else:
                 print(f"A quantia precisa ser entre ${MIN_BET} - ${MAX_BET}")
         else:
             print("Digite um numero")
 
-    return bet
+    return amount
 
 def spin(balance):
     lines = get_number_of_lines()
@@ -124,7 +123,7 @@ def spin(balance):
 
     slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
     print_slot_machine(slots)
-    winnings, winning_lines = check_winning(slots, lines, bet, symbol_values)
+    winnings, winning_lines = check_winnings(slots, lines, bet, symbol_values)
     print(f"Você ganhou ${winnings}")
     print(f"Voce ganhou na linha: ", *winning_lines)
     return winnings - total_bet
